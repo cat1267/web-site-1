@@ -9,67 +9,93 @@
     <script src="{% static 'scripts.js' %}" defer></script>
 </head>
 <body id="top">
-    <header>
-        <nav>
-            <div class="nav-left">
-                <a href="#top" style="color: white; text-decoration: none;">Name Test</a>
-            </div>
-            <div class="nav-right">
-                <a href="#about">About Us</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#invest">Invest</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-        <div class="content">
-            <h1>Welcome to Wolfedge Capital</h1>
-            <p>A Crypto based investment fund with an exclusive focus on the most ambitious early age blockchain startups</p>
-            <a href="#about" class="button">Learn More</a>
+<header>
+    <nav>
+        <div class="nav-left">
+            <a href="#top" style="color: white; text-decoration: none;">Name Test</a>
         </div>
-    </header>
-    <main>
-        <section id="about">
-            <h2>About Us</h2>
-            <div class="section-content">
-                <img src="{% static 'img/about_us.jpg' %}" alt="About Us">
-                <p>Wolfedge Capital is a leading investment fund with a focus on blockchain startups. Our mission is to provide early-stage companies with the resources they need to succeed. We believe in the transformative power of blockchain technology and are committed to supporting the most ambitious projects in the industry. With a team of experienced investors and advisors, Wolfedge Capital offers unparalleled expertise and guidance.</p>
+        <div class="menu-icon" id="menu-icon">
+            &#9776; <!-- Символ для кнопки меню -->
+        </div>
+        <div class="nav-right" id="nav-menu">
+            <a href="#about">About Us</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#invest">Invest</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Welcome to Wolfedge Capital</h1>
+        <p>A Crypto based investment fund with an exclusive focus on the most ambitious early age blockchain
+            startups</p>
+        <a href="#contact" class="button">Send Message</a>
+    </div>
+</header>
+<main>
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="section-content">
+            <img src="{% static 'web/about.jpg' %}" alt="About Us">
+            <p>Wolfedge Capital is a leading investment fund with a focus on blockchain startups. Our mission is to
+                provide early-stage companies with the resources they need to succeed. We believe in the transformative
+                power of blockchain technology and are committed to supporting the most ambitious projects in the
+                industry. With a team of experienced investors and advisors, Wolfedge Capital offers unparalleled
+                expertise and guidance.</p>
+        </div>
+    </section>
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="section-content reverse">
+            <img src="{% static 'web/portfolio.jpg' %}" alt="Portfolio">
+            <p>Our portfolio includes a diverse range of blockchain projects, each with the potential to disrupt and
+                innovate. From decentralized finance to supply chain management, we invest in companies that are pushing
+                the boundaries of what is possible with blockchain technology. Our approach is hands-on, providing
+                strategic advice and support to help our portfolio companies achieve their goals.</p>
+        </div>
+    </section>
+    <section id="invest">
+        <h2>Invest</h2>
+        <div class="section-content">
+            <img src="{% static 'web/invest.jpg' %}" alt="Invest">
+            <p>Investing with Wolfedge Capital means becoming part of a forward-thinking community dedicated to the
+                future of blockchain. We offer our investors access to some of the most promising startups in the space,
+                along with regular updates and insights into market trends. Join us and be a part of the blockchain
+                revolution.</p>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <form id="contact-form" action="{% url 'contact_view' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
-        </section>
-        <section id="portfolio">
-            <h2>Portfolio</h2>
-            <div class="section-content reverse">
-                <img src="{% static 'img/portfolio.jpg' %}" alt="Portfolio">
-                <p>Our portfolio includes a diverse range of blockchain projects, each with the potential to disrupt and innovate. From decentralized finance to supply chain management, we invest in companies that are pushing the boundaries of what is possible with blockchain technology. Our approach is hands-on, providing strategic advice and support to help our portfolio companies achieve their goals.</p>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
             </div>
-        </section>
-        <section id="invest">
-            <h2>Invest</h2>
-            <div class="section-content">
-                <img src="{% static 'img/invest.jpg' %}" alt="Invest">
-                <p>Investing with Wolfedge Capital means becoming part of a forward-thinking community dedicated to the future of blockchain. We offer our investors access to some of the most promising startups in the space, along with regular updates and insights into market trends. Join us and be a part of the blockchain revolution.</p>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="8" required></textarea>
             </div>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <form action="#" method="post">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Wolfedge Capital. All rights reserved.</p>
-    </footer>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+
+</main>
+<footer>
+    <p>&copy; 2024 Wolfedge Capital. All rights reserved.</p>
+</footer>
+<div id="popup" class="popup">
+    <span id="popup-message"></span>
+    <button onclick="closePopup()">OK</button>
+</div>
+<script>
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
 </body>
 </html>
